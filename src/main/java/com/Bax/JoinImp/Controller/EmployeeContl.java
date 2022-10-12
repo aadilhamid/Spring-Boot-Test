@@ -49,10 +49,7 @@ public class EmployeeContl {
     public Map<Long,String> subsetEmployee(){
         return employeeRepository.getEmployees().stream().collect(Collectors.toMap(employee -> employee.getEmpId(),employee->employee.getName()));
     }
-    @GetMapping("/JoinTable")
-    public List<Employee> getFullDetail(){
-        return employeeRepository.getEmployees();
-            }
+
     @GetMapping("/getAddress")
     public List<Address> getFullAddress(){
         return addressRepository.getAddress();
