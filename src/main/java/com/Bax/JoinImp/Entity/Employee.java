@@ -17,6 +17,7 @@ public class Employee {
 @GeneratedValue
     private Long empId;
     private String name;
+    private String designation;
     private Integer salary;
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "address_add_id")
