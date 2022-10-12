@@ -1,6 +1,8 @@
 package com.Bax.JoinImp.Controller;
 
+import com.Bax.JoinImp.Entity.Address;
 import com.Bax.JoinImp.Entity.Employee;
+import com.Bax.JoinImp.Repository.AddressRepository;
 import com.Bax.JoinImp.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ import java.util.stream.Collectors;
 public class EmployeeContl {
     @Autowired
     private EmployeeRepository employeeRepository;
+    @Autowired
+    private AddressRepository addressRepository;
 
     @PostMapping("/saveEmployee")
     public ResponseEntity<String> addEmployee(@RequestBody List<Employee> empData){
@@ -24,6 +28,7 @@ public class EmployeeContl {
         System.out.println(empData);
         return ResponseEntity.ok("Data Saved");
     }
+
     @GetMapping("/getEmployee")
     public List<Employee> getEmployeeList(){
 
@@ -43,5 +48,13 @@ public class EmployeeContl {
     @GetMapping("subsetEmployee")
     public Map<Long,String> subsetEmployee(){
         return employeeRepository.getEmployees().stream().collect(Collectors.toMap(employee -> employee.getEmpId(),employee->employee.getName()));
+    }
+    @GetMapping("/JoinTable")
+    public List<Employee> getFullDetail(){
+        return employeeRepository.getEmployees();
+            }
+    @GetMapping("/getAddress")
+    public List<Address> getFullAddress(){
+        return addressRepository.getAddress();
     }
 }
