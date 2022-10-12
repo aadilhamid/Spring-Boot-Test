@@ -30,7 +30,7 @@ public class EmployeeContl {
     }
 
     @GetMapping("/getEmployee")
-    public List<Employee> getEmployeeList(){
+    public List<Employee> getEmployeeListWithEqualSalary(){
 
 
         return employeeRepository.getEmployees().
